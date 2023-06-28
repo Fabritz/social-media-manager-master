@@ -32,8 +32,7 @@ def _redirect_url():
 
 @auth_api.get('/', responses={'302': None})
 def reddit_auth(query: AuthQuery):
-    """ Redirects to reddit login
-    """
+    """ Redirige al inicio de sesión de reddit """
     state = generate()
     scopes = [
         'identity',
@@ -75,8 +74,7 @@ def _get_access_token(data: dict):
 
 @auth_api.get('/callback', responses={'200': OAuthToken, '400': ErrorMessage})
 def reddit_auth_callback():
-    """ Callback after login to get access token
-    """
+    """ Llamada después del inicio de sesión para obtener el token de acceso"""
     query = request.args
 
     if 'error' in query:
@@ -95,8 +93,7 @@ def reddit_auth_callback():
 
 @auth_api.post('/refresh', responses={'200': OAuthToken})
 def reddit_refresh(body: RefreshToken):
-    """ Get a new access token using the refresh token
-    """
+    """ Obtener un nuevo token de acceso utilizando el token de actualización """
     token = _get_access_token({
         'grant_type': 'refresh_token',
         'refresh_token': body.refresh_token,
@@ -106,8 +103,7 @@ def reddit_refresh(body: RefreshToken):
 
 @auth_api.post('/revoke', responses={'200': None})
 def reddit_revoke(body: Token):
-    """ Revoke an access token or refresh token
-    """
+    """ Revocar un token de acceso o de actualizacion """
     data = {'token': body.token}
     res = req.post(REDDIT_REVOKE_URL, data=data,
                    auth=_basic_auth(), headers=headers)

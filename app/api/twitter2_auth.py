@@ -34,8 +34,7 @@ scopes = [
 
 @auth_api.get('/', responses={'302': None})
 def twitter_auth(query: AuthQuery):
-    """ Redirects to twitter login
-    """
+    """ Redirige al inicio de sesión de twitter """
     state = generate()
 
     query_str = url.urlencode({
@@ -70,8 +69,7 @@ def _get_access_token(data: dict):
 
 @auth_api.get('/callback', responses={'200': OAuthToken, '400': ErrorMessage})
 def twitter_auth_callback():
-    """ Callback after login to get access token
-    """
+    """ Llamada después del inicio de sesión para obtener el token de acceso"""
     query = request.args
 
     if 'error' in query:
@@ -93,25 +91,3 @@ def twitter_auth_callback():
 
     return redirect_or_return('twitter2', token.dict())
 
-
-# @auth_api.post('/refresh', responses={'200': OAuthToken})
-# def reddit_refresh(body: RefreshToken):
-#     """ Get a new access token using the refresh token
-#     """
-#     token = _get_access_token({
-#         'grant_type': 'refresh_token',
-#         'refresh_token': body.refresh_token,
-#     })
-#     return token.dict()
-
-
-# @auth_api.post('/revoke', responses={'200': None})
-# def reddit_revoke(body: Token):
-#     """ Revoke an access token or refresh token
-#     """
-#     data = {'token': body.token}
-#     res = req.post(REDDIT_REVOKE_URL, data=data,
-#                    auth=_basic_auth(), headers=headers)
-#     res.raise_for_status()
-
-#     return ''

@@ -45,8 +45,7 @@ def _get_access_token(data: dict) -> OAuthToken:
 
 @auth_api.get('/', responses={'302': None})
 def pinterest_auth(query: AuthQuery):
-    """ Redirects to reddit login
-    """
+    """ Redirige al login de Reddit """
     state = generate()
     query_str = url.urlencode({
         'client_id': _client(),
@@ -63,8 +62,7 @@ def pinterest_auth(query: AuthQuery):
 
 @auth_api.get('/callback', responses={'200': OAuthToken, '400': ErrorMessage})
 def pinterest_auth_callback(query: PinterestCallback):
-    """ Callback after login to get access token
-    """
+    """ Llamada después del inicio de sesion para obtener el token de acceso"""
     if query.state != session[SESSION_STATE]:
         return ErrorMessage(message='Invalid state').dict(), 400
 
@@ -78,8 +76,7 @@ def pinterest_auth_callback(query: PinterestCallback):
 
 @auth_api.post('/refresh', responses={'200': OAuthToken})
 def pinterest_refresh(body: RefreshToken):
-    """ Get a new access token using the refresh token
-    """
+    """ Obtener un nuevo token de acceso utilizando el token de actualizacion"""
     token = _get_access_token({
         'grant_type': 'refresh_token',
         'refresh_token': body.refresh_token,

@@ -45,14 +45,14 @@ class RedditPost(BaseModel):
     images: list[FileStorage] = []
     subreddit: str
     flair: str = Field(None,
-                       description="searches flair by text and adds it to the post")
+                       description="busca flair por texto y lo añade al post")
 
 
 class PixivPost(BaseModel):
     title: str
     text: str = None
     images: list[FileStorage] = Field(min_items=1, max_items=200)
-    tags: str = Field(description="tags separated by space")
+    tags: str = Field(description="etiquetas separadas por espacios")
 
 
 class TwitterPost(BaseModel):
