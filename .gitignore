@@ -1,0 +1,12 @@
+.vscode/*
+
+# System Files
+.DS_Store
+Thumbs.db
+
+/.env
+
+__pycache__/
+scripts/lib/
+env/
+chromedriver*
