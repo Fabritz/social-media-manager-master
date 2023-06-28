@@ -18,6 +18,6 @@
 <input
   class="border"
   bind:value={newUser}
-  placeholder="add user"
+  placeholder="Añadir usuario"
   on:keydown={addUser}
 />
