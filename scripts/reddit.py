@@ -10,12 +10,12 @@ REDDIT_API = 'https://oauth.reddit.com'
 load_dotenv()
 
 parser = ArgumentParser()
-parser.add_argument('command', type=str)  # submit, delete
+parser.add_argument('command', type=str)  # enviar, suprimir
 parser.add_argument('--title')
 parser.add_argument('--text')
 parser.add_argument('-i', '--images', nargs='+', default=[])
 parser.add_argument('-sr', '--subreddits', nargs='+', default=[],
-                    help='subreddits to post, name or name with flair separated by colon')
+                    help='subreddits a publicar, nombre o nombre con estilo separados por dos puntos')
 
 parser.add_argument('--refresh', default=False, action='store_true')
 
@@ -49,8 +49,7 @@ def submit():
 
 def delete_all():
     print('DELETE ALL')
-    # for sr in args.subreddits:
-    #     req.get(f'{REDDIT_API}/r/{sr}')
+
 
 
 cmd_map = {

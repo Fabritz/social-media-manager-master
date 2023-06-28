@@ -8,9 +8,9 @@ load_dotenv()
 
 parser = ArgumentParser()
 parser.add_argument('-t', '--text', type=str, required=True,
-                    help='text to post including hash tags')
+                    help='texto para publicar incluyendo hashtags')
 parser.add_argument('-i', '--images', nargs='+',
-                    default=[], help='images to upload')
+                    default=[], help='imagenes a cargar')
 args = parser.parse_args()
 
 

@@ -151,33 +151,3 @@ class RedditClient:
 
         return None  # , None
 
-
-# ----------------- Testing -----------------
-# load_dotenv()
-
-# client = RedditClient(os.getenv('REDDIT_TOKEN'))
-
-# test_sr = [{'sr': 'kumi_yada', 'flair': 'test'}]
-
-# ###
-# single_image_post = {
-#     'title': 'Test submit single image post',
-#     'text': 'Should be ignored',
-#     'images': ['images/pixel-ina.png'],
-# }
-# client.submit_post(single_image_post, test_sr)
-# ###
-# multi_image_post = {
-#     'title': 'Test submit multiple image post',
-#     'text': 'Should be a comment\n\nNew line',
-#     'images': ['images'],
-# }
-# client.submit_post(multi_image_post, test_sr)
-# ###
-# text_post = {
-#     'title': 'Test text post',
-#     'text': 'Should be the text of the post\n\n**New line**',
-#     'images': [],
-# }
-# client.submit_post(text_post, test_sr)
-# ###

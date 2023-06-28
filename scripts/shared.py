@@ -26,9 +26,7 @@ def refresh_token(provider: str, refresh_token: str):
     res.raise_for_status()
 
     print(
-        f'Refreshed tokens for {provider}. Save the new tokens to your environment file')
+        f'Tokens renovados para {provider}. Guarde los nuevos tokens en su archivo de entorno')
     return res.json()['access_token']
 
-
-#BASE_URL = 'https://sns-manager.herokuapp.com/api'
 BASE_URL = 'http://localhost:8080/api'
