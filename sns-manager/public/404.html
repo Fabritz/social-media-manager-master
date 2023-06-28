@@ -10,7 +10,7 @@
         .filter((x) => x !== "")
         .filter((x, i) => i < segments);
 
-      // Prevent infinite reload if path does not exist
+      // Evitar la recarga infinita si la ruta no existe
       const url = `/${parts.join("/")}`;
       if (url !== location.pathname) {
         sessionStorage.redirect = location.href;
@@ -20,6 +20,6 @@
   </head>
 
   <body>
-    Page not found
+    Pagina no encontrada
   </body>
 </html>

@@ -17,14 +17,13 @@ api.register_api(auth_api)
 @api.post('/post', responses={'200': SNSPostResponse})
 @jwt_token
 def reddit_post(form: RedditPost, token: str):
-    """ Submit a reddit post
-    """
+    """ Enviar una publicacion a reddit """
     client = RedditClient(token)
     post_id = client.submit_post(form)
 
     url = None
     if post_id:
-        # post_id contains a type prefix
+        # post_id contiene un prefijo de tipo
         actual_id = post_id.split('_')[-1]
         url = f'https://reddit.com/r/{form.subreddit}/comments/{actual_id}'
     return SNSPostResponse(url=url).dict()

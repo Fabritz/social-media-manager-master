@@ -35,8 +35,7 @@ class TwitterCallback(BaseModel):
 
 @auth_api.get('/', responses={'302': None})
 def twitter_auth(query: AuthQuery):
-    """ Redirects to twitter login
-    """
+    """ Redirecciona al inicio de sesion de twitter """
     auth_handler = tweepy.OAuth1UserHandler(
         _client(), _secret(), callback=_redirect_url())
 
@@ -48,8 +47,7 @@ def twitter_auth(query: AuthQuery):
 
 @auth_api.get('/callback', responses={'200': TwitterToken, '400': ErrorMessage})
 def twitter_auth_callback(query: TwitterCallback):
-    """ Callback after login to get access token
-    """
+    """ Llamada de retorno después del inicio de sesión para obtener el token de acceso """
     if not query.oauth_verifier:
         return ErrorMessage(message='User denied access').dict(), 400
 
@@ -72,16 +70,3 @@ def twitter_auth_callback(query: TwitterCallback):
                          access_secret=access_secret)
     return redirect_or_return('twitter', token.dict())
 
-
-# @auth.post('/revoke', responses={'200': None})
-# def twitter_revoke():
-#     """ Revoke an access token used for this request
-#     """
-#     req_auth = request.authorization
-#     auth = tweepy.OAuth1UserHandler(
-#         _client(), _secret(), req_auth.username, req_auth.password)
-#     api = tweepy.API(auth)
-
-#     res = api.request('POST', '1.1/oauth/invalidate_token')
-
-#     return ''

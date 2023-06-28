@@ -53,7 +53,8 @@
 
 <div class="h-full flex flex-col">
   <header class="flex flex-row justify-center gap-4 border-b p-2">
-    <button on:click={() => (sidebarOpen = !sidebarOpen)}>Open Sidebar</button>
+    <img src="src/assets/logo.png" alt="logo empresa" class="logo" />
+    <button on:click={() => (sidebarOpen = !sidebarOpen)}>Abrir Barra</button>
     <LoginButton provider="twitter" on:login={() => loadTokens()} />
     <LoginButton provider="reddit" on:login={() => loadTokens()} />
     <LoginButton provider="pinterest" on:login={() => loadTokens()} />

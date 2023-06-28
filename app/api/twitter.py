@@ -14,7 +14,7 @@ api = APIBlueprint('twitter', __name__,
 api.register_api(auth_api)
 
 
-# TODO: share with twitter_auth?
+
 def _client(): return os.getenv('TWITTER_CLIENT')
 def _secret(): return os.getenv('TWITTER_SECRET')
 
@@ -26,7 +26,7 @@ def _twitter_client(user: str = '', pw: str = ''):
 @api.post('/post', responses={'200': SNSPostResponse})
 @basic_auth
 def twitter_post(form: TwitterPost, user: str, password: str):
-    """ Posting a twitter tweet
+    """ Publicar un tweet
     """
     id_str = _twitter_client(user, password).tweet(form.text, form.images)
 
